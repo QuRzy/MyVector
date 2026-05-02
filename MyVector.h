@@ -140,7 +140,7 @@ public:
 	}
 	It end()
 	{
-		return It(ptr + 5);
+		return It(ptr + sz);
 	}
 	size_t size() const
 	{
