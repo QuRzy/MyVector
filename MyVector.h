@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <initializer_list>
 
 template<class T>
 class MyVector
@@ -36,6 +37,17 @@ public:
 		}
 		
 	}
+	MyVector(std::initializer_list<T> list)
+	{
+		delete[] ptr;
+		sz = list.size();
+		ptr = new T[sz];
+		int j = 0;
+		for (auto l = list.begin(); l != list.end(); ++l, ++j)
+		{
+			ptr[j] = *l;
+		}
+	}
 	MyVector& operator=(const MyVector& other)
 	{
 		delete[] ptr;
@@ -44,6 +56,18 @@ public:
 		for (int i = 0; i < sz; ++i)
 		{
 			ptr[i] = other.ptr[i];
+		}
+		return *this;
+	}
+	MyVector& operator=(std::initializer_list<T> list)
+	{
+		delete[] ptr;
+		sz = list.size();
+		ptr = new T[sz];
+		int j = 0;
+		for (auto l = list.begin(); l != list.end(); ++l, ++j)
+		{
+			ptr[j] = *l;
 		}
 		return *this;
 	}
